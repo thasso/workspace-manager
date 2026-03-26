@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/spf13/cobra"
 	"github.com/thasso/wsm/internal/config"
 	"github.com/thasso/wsm/internal/gitops"
 	"github.com/thasso/wsm/internal/ui"
-	"github.com/spf13/cobra"
 )
 
 var pullCmd = &cobra.Command{

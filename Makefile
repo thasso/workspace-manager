@@ -23,6 +23,10 @@ install: ## Install wsm to $GOPATH/bin
 test: ## Run all tests
 	go test ./...
 
+.PHONY: fmt
+fmt: ## Format Go source files
+	gofmt -w .
+
 .PHONY: lint
 lint: ## Run golangci-lint
 	golangci-lint run
