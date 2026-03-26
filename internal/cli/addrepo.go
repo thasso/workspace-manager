@@ -33,8 +33,8 @@ func init() {
 	addRepoCmd.Flags().StringVar(&addBranch, "branch", "main", "default branch")
 	addRepoCmd.Flags().StringVar(&addJiraKey, "jira-key", "", "Jira project key")
 	addRepoCmd.Flags().StringVar(&addDescription, "description", "", "brief description")
-	addRepoCmd.MarkFlagRequired("name")
-	addRepoCmd.MarkFlagRequired("repo")
+	_ = addRepoCmd.MarkFlagRequired("name")
+	_ = addRepoCmd.MarkFlagRequired("repo")
 	rootCmd.AddCommand(addRepoCmd)
 }
 

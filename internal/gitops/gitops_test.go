@@ -26,15 +26,15 @@ func createTestRepo(t *testing.T) (bareDir, workDir string) {
 	}
 
 	// Configure git user for commits
-	exec.Command("git", "-C", workDir, "config", "user.email", "test@test.com").Run()
-	exec.Command("git", "-C", workDir, "config", "user.name", "Test").Run()
+	_ = exec.Command("git", "-C", workDir, "config", "user.email", "test@test.com").Run()
+	_ = exec.Command("git", "-C", workDir, "config", "user.name", "Test").Run()
 
 	// Create an initial commit and push
 	dummyFile := filepath.Join(workDir, "README.md")
-	os.WriteFile(dummyFile, []byte("# Test\n"), 0644)
-	exec.Command("git", "-C", workDir, "add", ".").Run()
-	exec.Command("git", "-C", workDir, "commit", "-m", "initial commit").Run()
-	exec.Command("git", "-C", workDir, "push", "origin", testBranch).Run()
+	_ = os.WriteFile(dummyFile, []byte("# Test\n"), 0644)
+	_ = exec.Command("git", "-C", workDir, "add", ".").Run()
+	_ = exec.Command("git", "-C", workDir, "commit", "-m", "initial commit").Run()
+	_ = exec.Command("git", "-C", workDir, "push", "origin", testBranch).Run()
 
 	return bareDir, workDir
 }
@@ -76,7 +76,7 @@ func TestStatusDirty(t *testing.T) {
 	_, workDir := createTestRepo(t)
 	branch := defaultBranch(t, workDir)
 
-	os.WriteFile(filepath.Join(workDir, "dirty.txt"), []byte("dirty"), 0644)
+	_ = os.WriteFile(filepath.Join(workDir, "dirty.txt"), []byte("dirty"), 0644)
 
 	s, err := Status(workDir, branch)
 	if err != nil {

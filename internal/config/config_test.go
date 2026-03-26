@@ -105,7 +105,7 @@ func TestLoadMissingFile(t *testing.T) {
 func TestLoadInvalidJSON(t *testing.T) {
 	dir := t.TempDir()
 	path := filepath.Join(dir, "workspace.json")
-	os.WriteFile(path, []byte("not json"), 0644)
+	_ = os.WriteFile(path, []byte("not json"), 0644)
 
 	_, err := Load(path)
 	if err == nil {

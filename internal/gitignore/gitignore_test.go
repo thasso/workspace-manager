@@ -37,7 +37,7 @@ func TestUpdatePreservesUserContent(t *testing.T) {
 	path := filepath.Join(dir, ".gitignore")
 
 	userContent := "# My custom ignores\n*.log\n.env\n"
-	os.WriteFile(path, []byte(userContent), 0644)
+	_ = os.WriteFile(path, []byte(userContent), 0644)
 
 	if err := Update(path, []string{"repo-a"}); err != nil {
 		t.Fatalf("Update: %v", err)
@@ -59,7 +59,7 @@ func TestUpdateReplacesExistingManagedSection(t *testing.T) {
 	path := filepath.Join(dir, ".gitignore")
 
 	initial := "# User stuff\n*.log\n" + BeginMarker + "\nold-repo/\n" + EndMarker + "\n"
-	os.WriteFile(path, []byte(initial), 0644)
+	_ = os.WriteFile(path, []byte(initial), 0644)
 
 	if err := Update(path, []string{"new-repo"}); err != nil {
 		t.Fatalf("Update: %v", err)
@@ -85,10 +85,10 @@ func TestUpdateIdempotent(t *testing.T) {
 
 	repos := []string{"a", "b"}
 
-	Update(path, repos)
+	_ = Update(path, repos)
 	data1, _ := os.ReadFile(path)
 
-	Update(path, repos)
+	_ = Update(path, repos)
 	data2, _ := os.ReadFile(path)
 
 	if string(data1) != string(data2) {

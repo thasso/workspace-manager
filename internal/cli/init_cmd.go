@@ -29,7 +29,7 @@ func init() {
 	initCmd.Flags().StringVar(&initOrg, "org", "", "GitHub organization (required)")
 	initCmd.Flags().StringVar(&initJiraURL, "jira-url", "", "Jira base URL (optional)")
 	initCmd.Flags().BoolVar(&initForce, "force", false, "overwrite existing workspace.json")
-	initCmd.MarkFlagRequired("org")
+	_ = initCmd.MarkFlagRequired("org")
 	rootCmd.AddCommand(initCmd)
 }
 
