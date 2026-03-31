@@ -17,3 +17,10 @@ make test       # Run all tests
 
 If `make fmt` changes any files, stage them before committing. CI will
 reject unformatted code, lint errors, build failures, or test failures.
+
+## Releasing
+
+Tag with `git tag vX.Y.Z` and push with `git push --tags`. The release
+workflow cross-compiles for linux (amd64/arm64), macOS (amd64/arm64),
+and windows (amd64), then creates a GitHub Release with all binaries
+and checksums attached.
